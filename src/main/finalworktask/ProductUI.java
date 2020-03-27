@@ -1,5 +1,6 @@
 package main.finalworktask;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,7 +27,15 @@ public class ProductUI {
                 // add new product
                 System.out.println("Enter product name:");
                 String productName = sc.nextLine();
-                Product product = new Product(productName);
+                System.out.println("Enter product price:");
+                BigDecimal productPrice = sc.nextBigDecimal();
+//                System.out.println("Enter product category:");
+//                String productCategory = ;
+                System.out.println("Enter product discount:");
+                BigDecimal productDiscount = sc.nextBigDecimal();
+                System.out.println("Enter product description:");
+                String productDescription = sc.nextLine();
+                Product product = new Product(productName, productPrice, Product.productCategory.FRUIT, productDiscount, productDescription);
                 // invoke BL
                 AddProductResponse response = productService.addProduct(product);
                 if (response.isSuccess()) {

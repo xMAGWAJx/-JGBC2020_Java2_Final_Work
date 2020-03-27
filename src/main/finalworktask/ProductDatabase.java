@@ -3,8 +3,8 @@ package main.finalworktask;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDatabase {
-    private int currentID = 1;
+public class ProductDatabase implements ProductDatabaseInterface{
+    private int currentID = 0;
     private List<Product> products = new ArrayList<>();
 
     public void addProduct(Product product) {
@@ -15,6 +15,13 @@ public class ProductDatabase {
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public Product findById (int id) {
+        return products.stream()
+                .filter(product -> product.getId() == id)
+                .findAny()
+                .orElse(null);
     }
 
 }

@@ -2,7 +2,7 @@ package main.finalworktask;
 
 import java.util.List;
 
-public class ProductService {
+public class ProductService implements ProductServiceInterface {
 
     private ProductDatabase database;
 
@@ -26,6 +26,10 @@ public class ProductService {
 
     public List<Product> getProductList() {
         return database.getProducts();
+    }
+
+    public Product findById(int id) {
+        return database.findById(id);
     }
 
 }
