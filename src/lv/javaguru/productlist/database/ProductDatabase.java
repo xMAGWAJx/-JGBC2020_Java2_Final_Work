@@ -1,9 +1,11 @@
-package main.finalworktask;
+package lv.javaguru.productlist.database;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDatabase implements ProductDatabaseInterface{
+import lv.javaguru.productlist.domain.Product;
+
+public class ProductDatabase {
     private int currentID = 0;
     private List<Product> products = new ArrayList<>();
 
@@ -17,7 +19,7 @@ public class ProductDatabase implements ProductDatabaseInterface{
         return products;
     }
 
-    public Product findById (int id) {
+    public Product findById(int id) {
         return products.stream()
                 .filter(product -> product.getId() == id)
                 .findAny()
