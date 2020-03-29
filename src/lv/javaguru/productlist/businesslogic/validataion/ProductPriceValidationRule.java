@@ -13,6 +13,6 @@ public class ProductPriceValidationRule implements ProductValidationRule{
 
     @Override
     public String errorMessage() {
-        return "Incorrect product price";
+        return "Incorrect product price!";
     }
 }
