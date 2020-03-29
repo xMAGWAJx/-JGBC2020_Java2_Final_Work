@@ -10,7 +10,7 @@ public class Product {
     private BigDecimal price;
     private BigDecimal discount;
     private Category category;
-    private BigDecimal resultPrice;
+    private BigDecimal actualPrice;
 
 
     public Product(String name, String description, BigDecimal price, BigDecimal discount, Category category) {
@@ -19,7 +19,7 @@ public class Product {
         this.price = price;
         this.discount = discount;
         this.category = category;
-        this.resultPrice = price.subtract(price.multiply(discount).divide(BigDecimal.valueOf(100.00)));
+        this.actualPrice = price.subtract(price.multiply(discount).divide(BigDecimal.valueOf(100.00)));
 
     }
 
@@ -38,7 +38,7 @@ public class Product {
         if (discount != null ? !discount.equals(product.discount) : product.discount != null)
             return false;
         if (category != product.category) return false;
-        return resultPrice != null ? resultPrice.equals(product.resultPrice) : product.resultPrice == null;
+        return actualPrice != null ? actualPrice.equals(product.actualPrice) : product.actualPrice == null;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Product {
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (discount != null ? discount.hashCode() : 0);
         result = 31 * result + (category != null ? category.hashCode() : 0);
-        result = 31 * result + (resultPrice != null ? resultPrice.hashCode() : 0);
+        result = 31 * result + (actualPrice != null ? actualPrice.hashCode() : 0);
         return result;
     }
 
@@ -62,7 +62,7 @@ public class Product {
                 ", price=" + price +
                 ", discount=" + discount + "%" +
                 ", category=" + category +
-                ", resultPrice=" + resultPrice +
+                ", resultPrice=" + actualPrice +
                 '}';
     }
 
@@ -116,11 +116,11 @@ public class Product {
         this.category = category;
     }
 
-    public BigDecimal getResultPrice() {
-        return resultPrice;
+    public BigDecimal getActualPrice() {
+        return actualPrice;
     }
 
-    public void setResultPrice(BigDecimal resultPrice) {
-        this.resultPrice = resultPrice;
+    public void setActualPrice(BigDecimal actualPrice) {
+        this.actualPrice = actualPrice;
     }
 }

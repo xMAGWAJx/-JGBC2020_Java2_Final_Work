@@ -24,7 +24,7 @@ public class ProductUI {
             System.out.println("1. Add new product");
             System.out.println("2. Show product list");
             System.out.println("3. Get product by id");
-            System.out.println("4. Delete product by id");
+            System.out.println("4. Delete product by id -- NOTE DONE");
             System.out.println("5. Exit");
 
             // get user choice
@@ -82,6 +82,7 @@ public class ProductUI {
 
             if (userChoice == 4) {
                 // Delete product by id
+                System.out.println("Note done!");
 //                System.out.println("Enter product id that should be deleted: ");
 ////                int productId = sc.nextInt();
 ////                Product productDeleted = database.deleteById(productId);
