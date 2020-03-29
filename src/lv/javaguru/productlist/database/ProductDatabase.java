@@ -26,4 +26,8 @@ public class ProductDatabase {
                 .orElse(null);
     }
 
+    public boolean deleteById(int id) {
+        return products.remove(products.get(id));
+    }
+
 }

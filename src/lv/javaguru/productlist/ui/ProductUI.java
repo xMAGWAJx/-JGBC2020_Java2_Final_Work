@@ -24,7 +24,8 @@ public class ProductUI {
             System.out.println("1. Add new product");
             System.out.println("2. Show product list");
             System.out.println("3. Get product by id");
-            System.out.println("4. Exit");
+            System.out.println("4. Delete product by id");
+            System.out.println("5. Exit");
 
             // get user choice
             Scanner sc = new Scanner(System.in);
@@ -80,8 +81,16 @@ public class ProductUI {
             }
 
             if (userChoice == 4) {
+                // Delete product by id
+//                System.out.println("Enter product id that should be deleted: ");
+////                int productId = sc.nextInt();
+////                Product productDeleted = database.deleteById(productId);
+
+            }
+
+            if (userChoice == 5) {
                 // exit from program
-                System.out.println("Googby!");
+                System.out.println("Goodbye");
                 break;
             }
 
