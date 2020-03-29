@@ -40,8 +40,10 @@ public class ProductUI {
                 String productDescription = sc.nextLine();
                 System.out.println("Enter product price (Grater that 0):");
                 BigDecimal productPrice = sc.nextBigDecimal();
+                sc.nextLine();
                 System.out.println("Enter product discount (Values between 0 - 100):");
                 BigDecimal productDiscount = sc.nextBigDecimal();
+                sc.nextLine();
                 System.out.println("Chose one category from list below (From 1 - 4)");
                 ProductCategory.showAllCategories();
                 int category = sc.nextInt();

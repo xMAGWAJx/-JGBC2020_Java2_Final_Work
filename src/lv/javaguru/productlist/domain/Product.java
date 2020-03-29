@@ -10,6 +10,7 @@ public class Product {
     private BigDecimal price;
     private BigDecimal discount;
     private Category category;
+    private BigDecimal resultPrice;
 
 
     public Product(String name, String description, BigDecimal price, BigDecimal discount, Category category) {
@@ -18,6 +19,8 @@ public class Product {
         this.price = price;
         this.discount = discount;
         this.category = category;
+        this.resultPrice = price.subtract(price.multiply(discount).divide(BigDecimal.valueOf(100.00)));
+
     }
 
     @Override
@@ -34,7 +37,8 @@ public class Product {
         if (price != null ? !price.equals(product.price) : product.price != null) return false;
         if (discount != null ? !discount.equals(product.discount) : product.discount != null)
             return false;
-        return category == product.category;
+        if (category != product.category) return false;
+        return resultPrice != null ? resultPrice.equals(product.resultPrice) : product.resultPrice == null;
     }
 
     @Override
@@ -45,6 +49,7 @@ public class Product {
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (discount != null ? discount.hashCode() : 0);
         result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (resultPrice != null ? resultPrice.hashCode() : 0);
         return result;
     }
 
@@ -55,8 +60,9 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", discount=" + discount +
+                ", discount=" + discount + "%" +
                 ", category=" + category +
+                ", resultPrice=" + resultPrice +
                 '}';
     }
 
@@ -90,6 +96,7 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+
     }
 
     public BigDecimal getDiscount() {
@@ -98,6 +105,7 @@ public class Product {
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
+
     }
 
     public Category getCategory() {
@@ -106,5 +114,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public BigDecimal getResultPrice() {
+        return resultPrice;
+    }
+
+    public void setResultPrice(BigDecimal resultPrice) {
+        this.resultPrice = resultPrice;
     }
 }
