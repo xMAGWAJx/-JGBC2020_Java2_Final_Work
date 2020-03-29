@@ -7,8 +7,7 @@ public class ProductValidationResponse {
     private boolean success;
     private List<String> errorMessages;
 
-    public ProductValidationResponse(boolean success,
-                                     List<String> errorMessages) {
+    public ProductValidationResponse(boolean success, List<String> errorMessages) {
         this.success = success;
         this.errorMessages = errorMessages;
     }

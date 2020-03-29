@@ -1,38 +1,23 @@
 package lv.javaguru.productlist.domain;
 
+import java.math.BigDecimal;
+
 public class Product {
 
     private int id;
     private String name;
     private String description;
+    private BigDecimal price;
+    private BigDecimal discount;
+    private Category category;
 
-    public Product(String name, String description) {
+
+    public Product(String name, String description, BigDecimal price, BigDecimal discount, Category category) {
         this.name = name;
         this.description = description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        this.price = price;
+        this.discount = discount;
+        this.category = category;
     }
 
     @Override
@@ -44,7 +29,12 @@ public class Product {
 
         if (id != product.id) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        return description != null ? description.equals(product.description) : product.description == null;
+        if (description != null ? !description.equals(product.description) : product.description != null)
+            return false;
+        if (price != null ? !price.equals(product.price) : product.price != null) return false;
+        if (discount != null ? !discount.equals(product.discount) : product.discount != null)
+            return false;
+        return category == product.category;
     }
 
     @Override
@@ -52,6 +42,9 @@ public class Product {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (discount != null ? discount.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
         return result;
     }
 
@@ -61,6 +54,57 @@ public class Product {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", category=" + category +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

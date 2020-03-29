@@ -6,7 +6,7 @@ import java.util.List;
 import lv.javaguru.productlist.domain.Product;
 
 public class ProductDatabase {
-    private int currentID = 0;
+    private int currentID = 1;
     private List<Product> products = new ArrayList<>();
 
     public void addProduct(Product product) {

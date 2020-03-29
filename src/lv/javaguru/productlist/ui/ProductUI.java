@@ -1,5 +1,6 @@
 package lv.javaguru.productlist.ui;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ import lv.javaguru.productlist.businesslogic.ProductService;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
 import lv.javaguru.productlist.database.ProductDatabase;
 import lv.javaguru.productlist.domain.Product;
+import lv.javaguru.productlist.domain.ProductCategory;
 
 public class ProductUI {
 
@@ -21,7 +23,8 @@ public class ProductUI {
             System.out.println("Program menu:");
             System.out.println("1. Add new product");
             System.out.println("2. Show product list");
-            System.out.println("3. Exit");
+            System.out.println("3. Get product by id");
+            System.out.println("4. Exit");
 
             // get user choice
             Scanner sc = new Scanner(System.in);
@@ -35,7 +38,14 @@ public class ProductUI {
                 String productName = sc.nextLine();
                 System.out.println("Enter product description:");
                 String productDescription = sc.nextLine();
-                Product product = new Product(productName, productDescription);
+                System.out.println("Enter product price (Grater that 0):");
+                BigDecimal productPrice = sc.nextBigDecimal();
+                System.out.println("Enter product discount (Values between 0 - 100):");
+                BigDecimal productDiscount = sc.nextBigDecimal();
+                System.out.println("Chose one category from list below (From 1 - 4)");
+                ProductCategory.showAllCategories();
+                int category = sc.nextInt();
+                Product product = new Product(productName, productDescription, productPrice, productDiscount, ProductCategory.getCategory(category));
                 // invoke BL
                 AddProductResponse response = productService.addProduct(product);
                 if (response.isSuccess()) {
@@ -55,6 +65,19 @@ public class ProductUI {
             }
 
             if (userChoice == 3) {
+                // Get product by id
+                System.out.println("Enter product id: ");
+                int productId = sc.nextInt();
+                Product resultProductById = database.findById(productId);
+
+                if(resultProductById == null) {
+                    System.out.println("Product with provided id does not exist in the database: " + productId);
+                } else {
+                    System.out.println(resultProductById);
+                }
+            }
+
+            if (userChoice == 4) {
                 // exit from program
                 System.out.println("Googby!");
                 break;

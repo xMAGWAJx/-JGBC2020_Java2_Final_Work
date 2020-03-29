@@ -28,7 +28,6 @@ public class ProductService {
         return new AddProductResponse(true, null);
     }
 
-
     public List<Product> getProductList() {
         return database.getProducts();
     }
