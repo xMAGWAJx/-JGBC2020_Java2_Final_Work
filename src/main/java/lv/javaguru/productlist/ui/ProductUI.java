@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
-import lv.javaguru.productlist.businesslogic.AddProductResponse;
-import lv.javaguru.productlist.businesslogic.ProductService;
+import lv.javaguru.productlist.businesslogic.services.addservice.AddProductResponse;
+import lv.javaguru.productlist.businesslogic.services.ProductService;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
 import lv.javaguru.productlist.database.ProductDatabase;
 import lv.javaguru.productlist.domain.Product;

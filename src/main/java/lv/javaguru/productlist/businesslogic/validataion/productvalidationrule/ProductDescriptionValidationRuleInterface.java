@@ -1,8 +1,9 @@
-package lv.javaguru.productlist.businesslogic.validataion;
+package lv.javaguru.productlist.businesslogic.validataion.productvalidationrule;
 
+import lv.javaguru.productlist.businesslogic.validataion.ProductValidationRuleInterface;
 import lv.javaguru.productlist.domain.Product;
 
-public class ProductDescriptionValidationRule implements ProductValidationRule {
+public class ProductDescriptionValidationRuleInterface implements ProductValidationRuleInterface {
 
     @Override
     public boolean isValid(Product product) {

@@ -1,5 +1,7 @@
 package lv.javaguru.productlist.businesslogic;
 
+import lv.javaguru.productlist.businesslogic.services.addservice.AddProductResponse;
+import lv.javaguru.productlist.businesslogic.services.ProductService;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidationResponse;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
 import lv.javaguru.productlist.database.ProductDatabase;

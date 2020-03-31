@@ -1,10 +1,11 @@
-package lv.javaguru.productlist.businesslogic.validataion;
+package lv.javaguru.productlist.businesslogic.validataion.productvalidationrule;
 
 import java.math.BigDecimal;
 
+import lv.javaguru.productlist.businesslogic.validataion.ProductValidationRuleInterface;
 import lv.javaguru.productlist.domain.Product;
 
-public class ProductPriceValidationRule implements ProductValidationRule{
+public class ProductPriceValidationRuleInterface implements ProductValidationRuleInterface {
 
     @Override
     public boolean isValid(Product product) {

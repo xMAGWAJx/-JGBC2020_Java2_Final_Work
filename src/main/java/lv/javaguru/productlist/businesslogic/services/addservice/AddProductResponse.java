@@ -1,4 +1,4 @@
-package lv.javaguru.productlist.businesslogic;
+package lv.javaguru.productlist.businesslogic.services.addservice;
 
 import java.util.List;
 
@@ -7,8 +7,7 @@ public class AddProductResponse {
     private boolean success;
     private List<String> errorMessages;
 
-    public AddProductResponse(boolean success,
-                              List<String> errorMessages) {
+    public AddProductResponse(boolean success, List<String> errorMessages) {
         this.success = success;
         this.errorMessages = errorMessages;
     }

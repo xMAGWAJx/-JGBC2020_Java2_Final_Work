@@ -1,5 +1,6 @@
 package lv.javaguru.productlist.businesslogic.validataion;
 
+import lv.javaguru.productlist.businesslogic.validataion.productvalidationrule.ProductNameValidationRuleInterface;
 import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
 import org.junit.Test;
@@ -10,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class ProductNameValidationRuleTest {
 
-    private ProductNameValidationRule rule = new ProductNameValidationRule();
+    private ProductNameValidationRuleInterface rule = new ProductNameValidationRuleInterface();
 
     @Test
     public void returnFalseWhenNameIsEmpty() {
