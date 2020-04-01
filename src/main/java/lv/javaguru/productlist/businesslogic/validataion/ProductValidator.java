@@ -23,6 +23,7 @@ public class ProductValidator {
         validationRules.add(new ProductDiscountValidationRule());
         validationRules.add(new ProductDescriptionValidationRule());
         validationRules.add(new ProductUniqueNameValidationRule(database));
+        validationRules.add(new ProductDiscountLimitValidationRule());
     }
 
     public ProductValidationResponse validate(Product product) {
