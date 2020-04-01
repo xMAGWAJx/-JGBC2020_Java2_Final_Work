@@ -1,9 +1,11 @@
 package lv.javaguru.productlist.database;
 
 import lv.javaguru.productlist.domain.Product;
+import lv.javaguru.productlist.domain.ProductCategory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductDatabase implements ProductDatabaseInterface {
     private int currentID = 1;
@@ -34,4 +36,10 @@ public class ProductDatabase implements ProductDatabaseInterface {
         products.removeIf(product -> product.getId() == id);
     }
 
+    @Override
+    public List<Product> getProductByCategory(ProductCategory category) {
+        return products.stream()
+                .filter(product -> product.getCategory().equals(category))
+                .collect(Collectors.toList());
+    }
 }
