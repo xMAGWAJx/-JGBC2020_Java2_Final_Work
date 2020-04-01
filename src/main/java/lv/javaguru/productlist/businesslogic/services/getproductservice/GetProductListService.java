@@ -5,11 +5,11 @@ import lv.javaguru.productlist.domain.Product;
 
 import java.util.List;
 
-public class GetProductService {
+public class GetProductListService {
 
     private ProductDatabase database;
 
-    public GetProductService(ProductDatabase database) {
+    public GetProductListService(ProductDatabase database) {
         this.database = database;
     }
 

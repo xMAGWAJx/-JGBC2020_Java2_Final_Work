@@ -1,17 +1,17 @@
 package lv.javaguru.productlist.businesslogic.validataion;
 
-import lv.javaguru.productlist.businesslogic.validataion.productvalidationrule.ProductNameValidationRuleInterface;
+import lv.javaguru.productlist.businesslogic.validataion.productvalidationrule.ProductNameValidationRule;
 import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 public class ProductNameValidationRuleTest {
 
-    private ProductNameValidationRuleInterface rule = new ProductNameValidationRuleInterface();
+    private ProductNameValidationRule rule = new ProductNameValidationRule();
 
     @Test
     public void returnFalseWhenNameIsEmpty() {

@@ -3,17 +3,16 @@ package lv.javaguru.productlist.businesslogic.validataion.productvalidationrule;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidationRuleInterface;
 import lv.javaguru.productlist.domain.Product;
 
-import java.math.BigDecimal;
-
-public class ProductDiscountValidationRuleInterface implements ProductValidationRuleInterface {
+public class ProductDescriptionValidationRule implements ProductValidationRuleInterface {
 
     @Override
     public boolean isValid(Product product) {
-        return (product.getDiscount().compareTo(BigDecimal.ZERO) >= 0) && (product.getDiscount().compareTo(BigDecimal.valueOf(100)) <= 0);
+        return product.getDescription() != null
+                && !product.getDescription().equals("");
     }
 
     @Override
     public String errorMessage() {
-        return "Incorrect product discount!";
+        return "Empty description!";
     }
 }

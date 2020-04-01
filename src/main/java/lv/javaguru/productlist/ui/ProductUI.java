@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import lv.javaguru.productlist.businesslogic.services.addservice.AddProductResponse;
 import lv.javaguru.productlist.businesslogic.services.ProductService;
+import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdResponse;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
 import lv.javaguru.productlist.database.ProductDatabase;
 import lv.javaguru.productlist.domain.Product;
@@ -24,7 +25,7 @@ public class ProductUI {
             System.out.println("1. Add new product");
             System.out.println("2. Show product list");
             System.out.println("3. Get product by id");
-            System.out.println("4. Delete product by id -- NOTE DONE");
+            System.out.println("4. Delete product by id");
             System.out.println("5. Exit");
 
             // get user choice
@@ -82,10 +83,17 @@ public class ProductUI {
 
             if (userChoice == 4) {
                 // Delete product by id
-                System.out.println("Note done!");
-//                System.out.println("Enter product id that should be deleted: ");
-////                int productId = sc.nextInt();
-////                Product productDeleted = database.deleteById(productId);
+                System.out.println("Enter product id that should be deleted: ");
+                int productId = sc.nextInt();
+                DeleteProductByIdResponse productDeletionResponse = productService.deleteById(productId);
+
+                if(productDeletionResponse.isSuccess()) {
+                    System.out.println("Operation successful!");
+                    System.out.println("Product with id = '" + productId + "' was deleted.");
+                } else {
+                    System.out.println("Operation failed!");
+                    System.out.println("Error message: " + productDeletionResponse.getErrorMessages());
+                }
 
             }
 
