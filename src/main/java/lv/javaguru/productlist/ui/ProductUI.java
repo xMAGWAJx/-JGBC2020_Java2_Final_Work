@@ -16,7 +16,7 @@ public class ProductUI {
 
     public static void main(String[] args) {
         ProductDatabase database = new ProductDatabase();
-        ProductValidator productValidator = new ProductValidator();
+        ProductValidator productValidator = new ProductValidator(database);
         ProductService productService = new ProductService(database, productValidator);
 
         while (true) {

@@ -1,9 +1,8 @@
 package lv.javaguru.productlist.businesslogic.validataion;
 
-import lv.javaguru.productlist.businesslogic.validataion.productvalidationrule.ProductDescriptionValidationRule;
-import lv.javaguru.productlist.businesslogic.validataion.productvalidationrule.ProductDiscountValidationRule;
-import lv.javaguru.productlist.businesslogic.validataion.productvalidationrule.ProductNameValidationRule;
-import lv.javaguru.productlist.businesslogic.validataion.productvalidationrule.ProductPriceValidationRule;
+import lv.javaguru.productlist.businesslogic.validataion.productvalidationrule.*;
+import lv.javaguru.productlist.database.ProductDatabase;
+import lv.javaguru.productlist.database.ProductDatabaseInterface;
 import lv.javaguru.productlist.domain.Product;
 
 import java.util.ArrayList;
@@ -14,13 +13,16 @@ import static java.util.stream.Collectors.toList;
 public class ProductValidator {
 
     private List<ProductValidationRuleInterface> validationRules;
+    private ProductDatabaseInterface database;
 
-    public ProductValidator() {
+    public ProductValidator(ProductDatabase database) {
+        this.database = database;
         validationRules = new ArrayList<>();
         validationRules.add(new ProductNameValidationRule());
         validationRules.add(new ProductPriceValidationRule());
         validationRules.add(new ProductDiscountValidationRule());
         validationRules.add(new ProductDescriptionValidationRule());
+        validationRules.add(new ProductUniqueNameValidationRule(database));
     }
 
     public ProductValidationResponse validate(Product product) {
