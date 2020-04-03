@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class ProductDiscountValidationRuleTest {
 
-    private ProductDiscountLimitValidationRule rule = new ProductDiscountLimitValidationRule();
+    private ProductDiscountValidationRule rule = new ProductDiscountValidationRule();
 
     @Test
     public void returnTrueDiscountIsBiggerThanZero() {
@@ -24,11 +24,24 @@ public class ProductDiscountValidationRuleTest {
         assertTrue(rule.isValid(product));
     }
 
-//    @Test
-//    public void returnFalseDiscountIsBiggerThanHundred() {
-//        Product product = new Product("TestName", "TestDescription", BigDecimal.valueOf(30), BigDecimal.valueOf(120), Category.FRUIT);
-//        assertFalse(rule.isValid(product));
-//        assertEquals("Incorrect product discount!", rule.errorMessage());
-//    }
+    @Test
+    public void returnTrueDiscountIsZero() {
+        Product product = new Product("TestName", "TestDescription", BigDecimal.valueOf(30), BigDecimal.valueOf(0), Category.FRUIT);
+        assertTrue(rule.isValid(product));
+    }
+
+    @Test
+    public void returnFalseWhenDiscountIsBiggerThanHundred() {
+        Product product = new Product("TestName", "TestDescription", BigDecimal.valueOf(30), BigDecimal.valueOf(120), Category.FRUIT);
+        assertFalse(rule.isValid(product));
+        assertEquals("Incorrect product discount!", rule.errorMessage());
+    }
+
+    @Test
+    public void returnFalseWhenDiscountIsNegative() {
+        Product product = new Product("TestName", "TestDescription", BigDecimal.valueOf(30), BigDecimal.valueOf(-10), Category.FRUIT);
+        assertFalse(rule.isValid(product));
+        assertEquals("Incorrect product discount!", rule.errorMessage());
+    }
 
 }
