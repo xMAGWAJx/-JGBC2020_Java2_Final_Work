@@ -1,25 +1,24 @@
 package lv.javaguru.productlist.ui;
 
+import lv.javaguru.productlist.businesslogic.services.ProductService;
+import lv.javaguru.productlist.businesslogic.services.addservice.AddProductResponse;
+import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdResponse;
+import lv.javaguru.productlist.domain.Product;
+import lv.javaguru.productlist.domain.ProductCategory;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
-import lv.javaguru.productlist.businesslogic.services.addservice.AddProductResponse;
-import lv.javaguru.productlist.businesslogic.services.ProductService;
-import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdResponse;
-import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
-import lv.javaguru.productlist.database.ProductDatabase;
-import lv.javaguru.productlist.domain.Category;
-import lv.javaguru.productlist.domain.Product;
-import lv.javaguru.productlist.domain.ProductCategory;
-
 public class ProductUI {
 
-    public static void main(String[] args) {
-        ProductDatabase database = new ProductDatabase();
-        ProductValidator productValidator = new ProductValidator(database);
-        ProductService productService = new ProductService(database, productValidator);
-        ProductCategory productCategory = new ProductCategory();
+    private ProductService productService;
+
+    public ProductUI(ProductService productService) {
+        this.productService = productService;
+    }
+
+    public void executeProgram() {
 
         while (true) {
             // print menu
@@ -75,9 +74,9 @@ public class ProductUI {
                 // Get product by id
                 System.out.println("Enter product id: ");
                 int productId = sc.nextInt();
-                Product resultProductById = database.findById(productId);
+                Product resultProductById = productService.findById(productId);
 
-                if(resultProductById == null) {
+                if (resultProductById == null) {
                     System.out.println("Product with provided id does not exist in the database: " + productId);
                 } else {
                     System.out.println(resultProductById);
@@ -100,7 +99,7 @@ public class ProductUI {
                 int productId = sc.nextInt();
                 DeleteProductByIdResponse productDeletionResponse = productService.deleteById(productId);
 
-                if(productDeletionResponse.isSuccess()) {
+                if (productDeletionResponse.isSuccess()) {
                     System.out.println("Operation successful!");
                     System.out.println("Product with id = '" + productId + "' was deleted.");
                 } else {

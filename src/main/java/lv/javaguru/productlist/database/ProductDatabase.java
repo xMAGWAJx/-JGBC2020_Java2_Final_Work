@@ -5,6 +5,7 @@ import lv.javaguru.productlist.domain.ProductCategory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ProductDatabase implements ProductDatabaseInterface {
@@ -41,5 +42,11 @@ public class ProductDatabase implements ProductDatabaseInterface {
         return products.stream()
                 .filter(product -> product.getCategory().equals(category))
                 .collect(Collectors.toList());
+    }
+
+    public Optional<Product> findProductByName(String productName) {
+        return products.stream()
+                .filter(product -> product.getName().equals(productName))
+                .findFirst();
     }
 }

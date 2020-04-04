@@ -1,7 +1,5 @@
 package lv.javaguru.productlist.businesslogic.services;
 
-import java.util.List;
-
 import lv.javaguru.productlist.businesslogic.services.addservice.AddProductResponse;
 import lv.javaguru.productlist.businesslogic.services.addservice.AddProductService;
 import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdResponse;
@@ -14,7 +12,9 @@ import lv.javaguru.productlist.database.ProductDatabase;
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
 
-public class ProductService implements ProductServiceInterface{
+import java.util.List;
+
+public class ProductService implements ProductServiceInterface {
 
     private ProductValidator productValidator;
     private ProductDatabase database;

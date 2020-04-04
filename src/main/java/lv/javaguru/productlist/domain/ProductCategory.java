@@ -11,7 +11,7 @@ public class ProductCategory {
             result = Category.FRUIT;
         } else if (category == 2) {
             result = Category.VEGETABLES;
-        }else if (category == 3) {
+        } else if (category == 3) {
             result = Category.DRINKS;
         } else {
             result = Category.OTHER_CATEGORY;

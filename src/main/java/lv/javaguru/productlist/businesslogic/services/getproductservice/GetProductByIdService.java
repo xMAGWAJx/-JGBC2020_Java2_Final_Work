@@ -11,7 +11,7 @@ public class GetProductByIdService {
         this.database = database;
     }
 
-    public Product findById (int id) {
+    public Product findById(int id) {
         return database.findById(id);
     }
 }
