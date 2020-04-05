@@ -13,11 +13,13 @@ import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductService implements ProductServiceInterface {
 
     private ProductValidator productValidator;
     private ProductDatabase database;
+    private DeleteProductByIdService deleteProductByIdService;
 
     public ProductService(ProductDatabase database, ProductValidator productValidator) {
         this.database = database;
@@ -36,7 +38,7 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
-    public Product findById(int id) {
+    public Optional<Product> findById(int id) {
         return new GetProductByIdService(database).findById(id);
     }
 

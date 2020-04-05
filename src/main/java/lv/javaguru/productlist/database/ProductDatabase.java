@@ -25,16 +25,16 @@ public class ProductDatabase implements ProductDatabaseInterface {
     }
 
     @Override
-    public Product findById(int id) {
+    public Optional<Product> findById(int id) {
         return products.stream()
                 .filter(product -> product.getId() == id)
-                .findAny()
-                .orElse(null);
+                .findAny();
     }
 
     @Override
-    public void deleteById(int id) {
+    public boolean deleteById(int id) {
         products.removeIf(product -> product.getId() == id);
+        return false;
     }
 
     @Override

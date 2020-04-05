@@ -12,9 +12,9 @@ public interface ProductDatabaseInterface {
 
     List<Product> getProducts();
 
-    Product findById(int id);
+    Optional<Product> findById(int id);
 
-    void deleteById(int id);
+    boolean deleteById(int id);
 
     List<Product> getProductByCategory(ProductCategory category);
 

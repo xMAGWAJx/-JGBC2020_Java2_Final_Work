@@ -8,6 +8,7 @@ import lv.javaguru.productlist.domain.ProductCategory;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ProductUI {
@@ -74,7 +75,7 @@ public class ProductUI {
                 // Get product by id
                 System.out.println("Enter product id: ");
                 int productId = sc.nextInt();
-                Product resultProductById = productService.findById(productId);
+                Optional<Product> resultProductById = productService.findById(productId);
 
                 if (resultProductById == null) {
                     System.out.println("Product with provided id does not exist in the database: " + productId);
