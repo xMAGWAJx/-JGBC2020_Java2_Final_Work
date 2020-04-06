@@ -2,9 +2,11 @@ package lv.javaguru.productlist.businesslogic.validataion.productvalidationrule;
 
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidationRuleInterface;
 import lv.javaguru.productlist.domain.Product;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Component
 public class ProductDiscountValidationRule implements ProductValidationRuleInterface {
 
     @Override

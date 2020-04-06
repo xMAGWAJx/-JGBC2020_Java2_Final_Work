@@ -2,7 +2,9 @@ package lv.javaguru.productlist.businesslogic.validataion.productvalidationrule;
 
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidationRuleInterface;
 import lv.javaguru.productlist.domain.Product;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductNameValidationRule implements ProductValidationRuleInterface {
 
     @Override

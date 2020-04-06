@@ -5,16 +5,20 @@ import lv.javaguru.productlist.businesslogic.services.addservice.AddProductRespo
 import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdResponse;
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+@Component
 public class ProductUI {
 
     private ProductService productService;
 
+    @Autowired
     public ProductUI(ProductService productService) {
         this.productService = productService;
     }

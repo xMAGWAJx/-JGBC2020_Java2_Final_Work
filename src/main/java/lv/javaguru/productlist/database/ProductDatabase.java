@@ -2,13 +2,16 @@ package lv.javaguru.productlist.database;
 
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Component
 public class ProductDatabase implements ProductDatabaseInterface {
+
     private int currentID = 1;
     private List<Product> products = new ArrayList<>();
 

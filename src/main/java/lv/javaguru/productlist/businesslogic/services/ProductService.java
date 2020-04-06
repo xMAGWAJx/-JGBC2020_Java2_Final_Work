@@ -11,16 +11,19 @@ import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
 import lv.javaguru.productlist.database.ProductDatabase;
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ProductService implements ProductServiceInterface {
 
     private ProductValidator productValidator;
     private ProductDatabase database;
-    private DeleteProductByIdService deleteProductByIdService;
 
+    @Autowired
     public ProductService(ProductDatabase database, ProductValidator productValidator) {
         this.database = database;
         this.productValidator = productValidator;
