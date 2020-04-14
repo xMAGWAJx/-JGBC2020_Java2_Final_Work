@@ -1,6 +1,5 @@
 package lv.javaguru.productlist.ui.actions;
 
-import lv.javaguru.productlist.businesslogic.services.ProductService;
 import lv.javaguru.productlist.businesslogic.services.addservice.AddProductResponse;
 import lv.javaguru.productlist.businesslogic.services.addservice.AddProductService;
 import lv.javaguru.productlist.domain.Product;

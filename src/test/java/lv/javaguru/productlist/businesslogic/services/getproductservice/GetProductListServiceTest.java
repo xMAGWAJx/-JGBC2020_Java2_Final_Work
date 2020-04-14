@@ -1,14 +1,11 @@
 package lv.javaguru.productlist.businesslogic.services.getproductservice;
 
-import lv.javaguru.productlist.businesslogic.services.ProductService;
-import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
+
 import lv.javaguru.productlist.database.ProductDatabase;
-import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +17,12 @@ import static org.mockito.Mockito.when;
 public class GetProductListServiceTest {
 
     private ProductDatabase database;
-    private ProductService service;
+    private GetProductListService service;
 
     @Before
     public void setup() {
         database = mock(ProductDatabase.class);
-        service = new ProductService(database);
+        service = new GetProductListService(database);
     }
 
     /*@Test

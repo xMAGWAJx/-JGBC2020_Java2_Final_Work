@@ -1,6 +1,5 @@
 package lv.javaguru.productlist.ui.actions;
 
-import lv.javaguru.productlist.businesslogic.services.ProductService;
 import lv.javaguru.productlist.businesslogic.services.getproductservice.GetProductListService;
 import lv.javaguru.productlist.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
