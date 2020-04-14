@@ -13,6 +13,6 @@ public class ExitProgramAction implements UIAction {
 
     @Override
     public int getMenuNumber() {
-        return 6;
+        return 0;
     }
 }

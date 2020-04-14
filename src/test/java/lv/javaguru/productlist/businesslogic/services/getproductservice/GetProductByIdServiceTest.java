@@ -1,7 +1,5 @@
 package lv.javaguru.productlist.businesslogic.services.getproductservice;
 
-import lv.javaguru.productlist.businesslogic.services.ProductService;
-import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
 import lv.javaguru.productlist.database.ProductDatabase;
 import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
@@ -17,15 +15,13 @@ import static org.mockito.Mockito.when;
 
 public class GetProductByIdServiceTest {
 
-    private ProductValidator validator;
     private ProductDatabase database;
-    private ProductService service;
+    private GetProductByIdService service;
 
     @Before
     public void setup() {
-        validator = mock(ProductValidator.class);
         database = mock(ProductDatabase.class);
-        service = new ProductService(database, validator);
+        service = new GetProductByIdService(database);
     }
 
     @Test

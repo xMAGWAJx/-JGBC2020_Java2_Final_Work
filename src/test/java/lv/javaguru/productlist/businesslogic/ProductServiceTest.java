@@ -1,7 +1,7 @@
 package lv.javaguru.productlist.businesslogic;
 
-import lv.javaguru.productlist.businesslogic.services.ProductService;
 import lv.javaguru.productlist.businesslogic.services.addservice.AddProductResponse;
+import lv.javaguru.productlist.businesslogic.services.addservice.AddProductService;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidationResponse;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
 import lv.javaguru.productlist.database.ProductDatabase;
@@ -21,13 +21,13 @@ public class ProductServiceTest {
 
     private ProductValidator validator;
     private ProductDatabase database;
-    private ProductService service;
+    private AddProductService service;
 
     @Before
     public void setup() {
         validator = mock(ProductValidator.class);
         database = mock(ProductDatabase.class);
-        service = new ProductService(database, validator);
+        service = new AddProductService(database, validator);
     }
 
     @Test

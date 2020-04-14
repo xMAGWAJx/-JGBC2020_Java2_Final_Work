@@ -1,7 +1,6 @@
 package lv.javaguru.productlist.ui;
 
-import lv.javaguru.productlist.businesslogic.services.ProductService;
-import lv.javaguru.productlist.ui.actions.*;
+import lv.javaguru.productlist.ui.actions.UIAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,12 +20,12 @@ public class ProductUI {
 
     private void printMenu() {
         System.out.println("Program menu:");
+        System.out.println("0. Exit");
         System.out.println("1. Add new product");
         System.out.println("2. Show product list");
         System.out.println("3. Get product by id");
         //System.out.println("4. Get product by category -- NOT DONE");
         System.out.println("5. Delete product by id");
-        System.out.println("6. Exit");
     }
 
     private int getUserChoice() {
