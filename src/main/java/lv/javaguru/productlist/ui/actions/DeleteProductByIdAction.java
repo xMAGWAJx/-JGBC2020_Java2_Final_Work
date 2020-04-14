@@ -1,7 +1,7 @@
 package lv.javaguru.productlist.ui.actions;
 
-import lv.javaguru.productlist.businesslogic.services.ProductService;
 import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdResponse;
+import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,10 @@ import java.util.Scanner;
 @Component
 public class DeleteProductByIdAction implements UIAction {
 
-    private ProductService productService;
+    private DeleteProductByIdService productService;
 
     @Autowired
-    public DeleteProductByIdAction(ProductService productService) {
+    public DeleteProductByIdAction(DeleteProductByIdService productService) {
         this.productService = productService;
     }
 

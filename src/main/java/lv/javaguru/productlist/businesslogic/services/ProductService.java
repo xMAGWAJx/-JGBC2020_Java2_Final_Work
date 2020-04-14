@@ -1,7 +1,5 @@
 package lv.javaguru.productlist.businesslogic.services;
 
-import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdResponse;
-import lv.javaguru.productlist.businesslogic.services.deleteproductservice.DeleteProductByIdService;
 import lv.javaguru.productlist.businesslogic.services.getproductservice.GetProductByCategoryService;
 import lv.javaguru.productlist.businesslogic.services.getproductservice.GetProductListService;
 import lv.javaguru.productlist.database.ProductDatabase;
@@ -25,12 +23,6 @@ public class ProductService implements ProductServiceInterface {
     @Override
     public List<Product> getProductList() {
         return new GetProductListService(database).getProductList();
-    }
-
-    @Override
-    public DeleteProductByIdResponse deleteById(int id) {
-        DeleteProductByIdService deleteProductByIdService = new DeleteProductByIdService(database);
-        return deleteProductByIdService.deleteById(id);
     }
 
     @Override
