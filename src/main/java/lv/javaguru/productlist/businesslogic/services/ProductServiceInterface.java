@@ -5,13 +5,10 @@ import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductServiceInterface {
 
     List<Product> getProductList();
-
-    Optional<Product> findById(int id);
 
     DeleteProductByIdResponse deleteById(int id);
 

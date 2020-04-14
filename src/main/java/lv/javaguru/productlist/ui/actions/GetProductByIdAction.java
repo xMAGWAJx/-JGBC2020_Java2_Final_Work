@@ -1,6 +1,6 @@
 package lv.javaguru.productlist.ui.actions;
 
-import lv.javaguru.productlist.businesslogic.services.ProductService;
+import lv.javaguru.productlist.businesslogic.services.getproductservice.GetProductByIdService;
 import lv.javaguru.productlist.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,10 +11,10 @@ import java.util.Scanner;
 @Component
 public class GetProductByIdAction implements UIAction {
 
-    private ProductService productService;
+    private GetProductByIdService productService;
 
     @Autowired
-    public GetProductByIdAction(ProductService productService) {
+    public GetProductByIdAction(GetProductByIdService productService) {
         this.productService = productService;
     }
 
