@@ -1,7 +1,7 @@
 package lv.javaguru.productlist.businesslogic.services.getproductservice;
 
 
-import lv.javaguru.productlist.database.ProductDatabase;
+import lv.javaguru.productlist.database.InMemoryProductRepositoryImpl;
 import lv.javaguru.productlist.domain.Product;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +16,12 @@ import static org.mockito.Mockito.when;
 
 public class GetProductListServiceTest {
 
-    private ProductDatabase database;
+    private InMemoryProductRepositoryImpl database;
     private GetProductListService service;
 
     @Before
     public void setup() {
-        database = mock(ProductDatabase.class);
+        database = mock(InMemoryProductRepositoryImpl.class);
         service = new GetProductListService(database);
     }
 

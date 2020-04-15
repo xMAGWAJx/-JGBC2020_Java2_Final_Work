@@ -6,7 +6,7 @@ import lv.javaguru.productlist.domain.ProductCategory;
 import java.util.List;
 import java.util.Optional;
 
-public interface ProductDatabaseInterface {
+public interface ProductRepository {
 
     void addProduct(Product product);
 

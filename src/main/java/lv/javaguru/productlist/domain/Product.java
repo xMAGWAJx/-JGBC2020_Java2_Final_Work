@@ -13,6 +13,10 @@ public class Product {
     private BigDecimal actualPrice;
 
 
+    public Product() {
+
+    }
+
     public Product(String name, String description, BigDecimal price, BigDecimal discount, Category category) {
         this.name = name;
         this.description = description;

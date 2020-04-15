@@ -4,7 +4,7 @@ import lv.javaguru.productlist.businesslogic.services.addservice.AddProductRespo
 import lv.javaguru.productlist.businesslogic.services.addservice.AddProductService;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidationResponse;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
-import lv.javaguru.productlist.database.ProductDatabase;
+import lv.javaguru.productlist.database.InMemoryProductRepositoryImpl;
 import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
 import org.junit.Before;
@@ -20,13 +20,13 @@ import static org.mockito.Mockito.*;
 public class ProductServiceTest {
 
     private ProductValidator validator;
-    private ProductDatabase database;
+    private InMemoryProductRepositoryImpl database;
     private AddProductService service;
 
     @Before
     public void setup() {
         validator = mock(ProductValidator.class);
-        database = mock(ProductDatabase.class);
+        database = mock(InMemoryProductRepositoryImpl.class);
         service = new AddProductService(database, validator);
     }
 

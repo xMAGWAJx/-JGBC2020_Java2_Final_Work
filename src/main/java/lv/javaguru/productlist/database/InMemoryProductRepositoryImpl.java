@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
-public class ProductDatabase implements ProductDatabaseInterface {
+//@Component
+public class InMemoryProductRepositoryImpl implements ProductRepository {
 
     private int currentID = 1;
     private List<Product> products = new ArrayList<>();

@@ -1,7 +1,8 @@
 package lv.javaguru.productlist.businesslogic.validataion.productvalidationrule;
 
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidationRuleInterface;
-import lv.javaguru.productlist.database.ProductDatabase;
+import lv.javaguru.productlist.database.InMemoryProductRepositoryImpl;
+import lv.javaguru.productlist.database.ProductRepository;
 import lv.javaguru.productlist.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,10 +12,10 @@ import java.util.Optional;
 @Component
 public class ProductUniqueNameValidationRule implements ProductValidationRuleInterface {
 
-    private ProductDatabase database;
+    private ProductRepository database;
 
     @Autowired
-    public ProductUniqueNameValidationRule(ProductDatabase database) {
+    public ProductUniqueNameValidationRule(ProductRepository database) {
         this.database = database;
     }
 

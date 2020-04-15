@@ -1,6 +1,7 @@
 package lv.javaguru.productlist.businesslogic.services.getproductservice;
 
-import lv.javaguru.productlist.database.ProductDatabase;
+import lv.javaguru.productlist.database.InMemoryProductRepositoryImpl;
+import lv.javaguru.productlist.database.ProductRepository;
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,10 @@ import java.util.List;
 @Component
 public class GetProductByCategoryService {
 
-    private ProductDatabase database;
+    private ProductRepository database;
 
     @Autowired
-    public GetProductByCategoryService(ProductDatabase database) {
+    public GetProductByCategoryService(ProductRepository database) {
         this.database = database;
     }
 
