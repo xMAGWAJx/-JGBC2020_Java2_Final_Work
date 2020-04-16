@@ -1,5 +1,6 @@
 package lv.javaguru.productlist.database;
 
+import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,11 +54,16 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
         Connection connection = null;
         try {
             connection = getConnection();
-            String sql = "insert into PRODUCTS(id, title, description) values(default, ?, ?)";
+//            String sql = "insert into PRODUCTS(product_id, product_name, product_description, product_price, product_discount, product_category, product_actual_price) values(default, ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into PRODUCTS(product_id, product_name, product_description, product_price, product_discount) values(default, ?, ?, ?, ?)";
             PreparedStatement preparedStatement =
                     connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
+            preparedStatement.setBigDecimal(3, product.getPrice());
+            preparedStatement.setBigDecimal(4, product.getDiscount());
+//            preparedStatement.setObject(5, product.getCategory());
+//            preparedStatement.setBigDecimal(6, product.getActualPrice());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -85,9 +91,13 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setName(resultSet.getString("title"));
-                product.setDescription(resultSet.getString("description"));
+                product.setId(resultSet.getInt("product_id"));
+                product.setName(resultSet.getString("product_name"));
+                product.setDescription(resultSet.getString("product_description"));
+                product.setPrice(resultSet.getBigDecimal("product_price"));
+                product.setDiscount(resultSet.getBigDecimal("product_discount"));
+                product.setCategory(Category.valueOf(resultSet.getString("product_category")));
+                product.setActualPrice(resultSet.getBigDecimal("product_actual_price"));
                 products.add(product);
             }
         } catch (Throwable e) {
