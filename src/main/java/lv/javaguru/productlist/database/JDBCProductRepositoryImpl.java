@@ -54,16 +54,15 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
         Connection connection = null;
         try {
             connection = getConnection();
-//            String sql = "insert into PRODUCTS(product_id, product_name, product_description, product_price, product_discount, product_category, product_actual_price) values(default, ?, ?, ?, ?, ?, ?)";
-            String sql = "insert into PRODUCTS(product_id, product_name, product_description, product_price, product_discount) values(default, ?, ?, ?, ?)";
+            String sql = "insert into PRODUCTS(product_id, product_name, product_description, product_price, product_discount, product_category, product_actual_price) values(default, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement =
                     connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setBigDecimal(3, product.getPrice());
             preparedStatement.setBigDecimal(4, product.getDiscount());
-//            preparedStatement.setObject(5, product.getCategory());
-//            preparedStatement.setBigDecimal(6, product.getActualPrice());
+            preparedStatement.setObject(5, product.getCategory());
+            preparedStatement.setBigDecimal(6, product.getActualPrice());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
