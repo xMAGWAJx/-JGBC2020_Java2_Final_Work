@@ -3,8 +3,7 @@ package lv.javaguru.productlist.domain;
 import java.math.BigDecimal;
 
 public class Product {
-
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private BigDecimal price;
@@ -34,20 +33,18 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (id != product.id) return false;
+        if (id != null ? !id.equals(product.id) : product.id != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        if (description != null ? !description.equals(product.description) : product.description != null)
-            return false;
+        if (description != null ? !description.equals(product.description) : product.description != null) return false;
         if (price != null ? !price.equals(product.price) : product.price != null) return false;
-        if (discount != null ? !discount.equals(product.discount) : product.discount != null)
-            return false;
+        if (discount != null ? !discount.equals(product.discount) : product.discount != null) return false;
         if (category != product.category) return false;
         return actualPrice != null ? actualPrice.equals(product.actualPrice) : product.actualPrice == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
@@ -70,11 +67,11 @@ public class Product {
                 '}';
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

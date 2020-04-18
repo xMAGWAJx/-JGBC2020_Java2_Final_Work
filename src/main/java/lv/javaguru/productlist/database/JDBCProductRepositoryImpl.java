@@ -61,7 +61,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setBigDecimal(3, product.getPrice());
             preparedStatement.setBigDecimal(4, product.getDiscount());
-            preparedStatement.setObject(5, product.getCategory());
+            preparedStatement.setString(5, product.getCategory().name());
             preparedStatement.setBigDecimal(6, product.getActualPrice());
 
             preparedStatement.executeUpdate();
@@ -95,7 +95,11 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
                 product.setDescription(resultSet.getString("product_description"));
                 product.setPrice(resultSet.getBigDecimal("product_price"));
                 product.setDiscount(resultSet.getBigDecimal("product_discount"));
-                product.setCategory(Category.valueOf(resultSet.getString("product_category")));
+
+                String categoryStr = resultSet.getString("product_category").toUpperCase();
+                Category category = Category.valueOf(categoryStr);
+                product.setCategory(category);
+
                 product.setActualPrice(resultSet.getBigDecimal("product_actual_price"));
                 products.add(product);
             }
