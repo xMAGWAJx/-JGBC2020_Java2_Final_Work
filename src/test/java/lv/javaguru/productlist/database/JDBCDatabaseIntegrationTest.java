@@ -13,6 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,15 +23,14 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { SpringConfig.class })
-@SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:cleanAllTables.sql")
-})
+@TransactionConfiguration(defaultRollback = false)
 public class JDBCDatabaseIntegrationTest {
 
     @Autowired
     private ProductRepository productRepository;
 
     @Test
+    @Transactional
     public void shouldAddProductToDB() {
         Product product = new Product("Milk", "1L pack",
                 BigDecimal.valueOf(1.0), BigDecimal.valueOf(0L), Category.DRINKS);

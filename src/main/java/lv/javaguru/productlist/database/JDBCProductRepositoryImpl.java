@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+//@Component
 public class JDBCProductRepositoryImpl implements ProductRepository {
 
     @Value( "${jdbc.url}" )
@@ -67,7 +67,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()){
-                product.setId(rs.getInt(1));
+                product.setId(rs.getLong(1));
             }
         } catch (Throwable e) {
             System.out.println("Exception while execute addProduct");
@@ -90,7 +90,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(resultSet.getInt("product_id"));
+                product.setId(resultSet.getLong("product_id"));
                 product.setName(resultSet.getString("product_name"));
                 product.setDescription(resultSet.getString("product_description"));
                 product.setPrice(resultSet.getBigDecimal("product_price"));
@@ -114,19 +114,19 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findById(int id) {
+    public Optional<Product> findById(long id) {
         Optional<Product> optionalProduct = Optional.empty();
         Connection connection = null;
         try {
             connection = getConnection();
             String sql = "select * from PRODUCTS where product_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(resultSet.getInt("product_id"));
+                product.setId(resultSet.getLong("product_id"));
                 product.setName(resultSet.getString("product_name"));
                 product.setDescription(resultSet.getString("product_description"));
                 product.setPrice(resultSet.getBigDecimal("product_price"));
@@ -152,13 +152,13 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(long id) {
         Connection connection = null;
         try {
             connection = getConnection();
             String sql = "delete from PRODUCTS where product_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
 
             int resultSet = preparedStatement.executeUpdate();
             return resultSet == 1;
@@ -185,7 +185,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(resultSet.getInt("product_id"));
+                product.setId(resultSet.getLong("product_id"));
                 product.setName(resultSet.getString("product_name"));
                 product.setDescription(resultSet.getString("product_description"));
                 product.setPrice(resultSet.getBigDecimal("product_price"));

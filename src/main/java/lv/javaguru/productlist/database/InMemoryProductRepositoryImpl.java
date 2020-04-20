@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 //@Component
 public class InMemoryProductRepositoryImpl implements ProductRepository {
 
-    private int currentID = 1;
+    private long currentID = 1;
     private List<Product> products = new ArrayList<>();
 
     @Override
@@ -28,14 +28,14 @@ public class InMemoryProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findById(int id) {
+    public Optional<Product> findById(long id) {
         return products.stream()
                 .filter(product -> product.getId() == id)
                 .findAny();
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(long id) {
         products.removeIf(product -> product.getId() == id);
         return false;
     }

@@ -1,14 +1,34 @@
 package lv.javaguru.productlist.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "products")
 public class Product {
-    private Integer id;
+
+    @Id
+    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "product_name", nullable = false)
     private String name;
+
+    @Column(name = "product_description", nullable = false)
     private String description;
+
+    @Column(name = "product_price", precision = 19, scale = 4)
     private BigDecimal price;
+
+    @Column(name = "product_discount", precision = 19, scale = 4)
     private BigDecimal discount;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "product_category")
     private Category category;
+
+    @Column(name = "product_actual_price", precision = 19, scale = 4)
     private BigDecimal actualPrice;
 
 
@@ -67,11 +87,11 @@ public class Product {
                 '}';
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
