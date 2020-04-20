@@ -24,7 +24,7 @@ public class ProductUI {
         System.out.println("1. Add new product");
         System.out.println("2. Show product list");
         System.out.println("3. Get product by id");
-        //System.out.println("4. Get product by category -- NOT DONE");
+        System.out.println("4. Get product by category");
         System.out.println("5. Delete product by id");
     }
 

@@ -174,7 +174,38 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
 
     @Override
     public List<Product> getProductByCategory(ProductCategory category) {
-        return null;
+        List<Product> products = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "select * from PRODUCTS where product_category = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, category.toString());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("product_id"));
+                product.setName(resultSet.getString("product_name"));
+                product.setDescription(resultSet.getString("product_description"));
+                product.setPrice(resultSet.getBigDecimal("product_price"));
+                product.setDiscount(resultSet.getBigDecimal("product_discount"));
+
+                String categoryStr = resultSet.getString("product_category").toUpperCase();
+                Category productCategory = Category.valueOf(categoryStr);
+                product.setCategory(productCategory);
+
+                product.setActualPrice(resultSet.getBigDecimal("product_actual_price"));
+                products.add(product);
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while getting products - getProductByCategory");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return products;
     }
 
     @Override
