@@ -70,7 +70,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
                 product.setId(rs.getInt(1));
             }
         } catch (Throwable e) {
-            System.out.println("Exception while execute ProductDAOImpl.save()");
+            System.out.println("Exception while execute addProduct");
             e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
@@ -104,7 +104,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
                 products.add(product);
             }
         } catch (Throwable e) {
-            System.out.println("Exception while getting customer list ProductDAOImpl.getAll()");
+            System.out.println("Exception while getting products - getProducts");
             e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
@@ -115,12 +115,61 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Optional<Product> findById(int id) {
-        return Optional.empty();
+        Optional<Product> optionalProduct = Optional.empty();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "select * from PRODUCTS where product_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("product_id"));
+                product.setName(resultSet.getString("product_name"));
+                product.setDescription(resultSet.getString("product_description"));
+                product.setPrice(resultSet.getBigDecimal("product_price"));
+                product.setDiscount(resultSet.getBigDecimal("product_discount"));
+
+                String categoryStr = resultSet.getString("product_category").toUpperCase();
+                Category category = Category.valueOf(categoryStr);
+                product.setCategory(category);
+
+                product.setActualPrice(resultSet.getBigDecimal("product_actual_price"));
+
+                product.setId(id);
+                optionalProduct = Optional.of(product);
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while getting product by id");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return optionalProduct;
     }
 
     @Override
     public boolean deleteById(int id) {
-        return false;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "delete from PRODUCTS where product_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            int resultSet = preparedStatement.executeUpdate();
+            return resultSet == 1;
+
+        } catch (Throwable e) {
+            System.out.println("Exception while deleting product by id");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
     }
 
     @Override
