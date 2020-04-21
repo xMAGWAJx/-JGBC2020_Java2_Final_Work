@@ -3,6 +3,7 @@ package lv.javaguru.productlist.database;
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -31,13 +32,16 @@ public class ORMProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findById(long id) {
-//        return sessionFactory.getCurrentSession().createCriteria(Product.class);
-        return Optional.empty();
+    public Optional<Product> findById(Long id) {
+        Product product = (Product) sessionFactory.getCurrentSession().createCriteria(Product.class).add(Restrictions.eq("id", id)).uniqueResult();
+        if (product == null) {
+            System.out.println("Product with id = '" + id + "' was not found in database.");
+        }
+        return Optional.ofNullable(product);
     }
 
     @Override
-    public boolean deleteById(long id) {
+    public boolean deleteById(Long id) {
         return false;
     }
 

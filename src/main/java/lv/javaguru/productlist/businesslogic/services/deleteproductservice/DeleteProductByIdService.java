@@ -1,6 +1,5 @@
 package lv.javaguru.productlist.businesslogic.services.deleteproductservice;
 
-import lv.javaguru.productlist.database.InMemoryProductRepositoryImpl;
 import lv.javaguru.productlist.database.ProductRepository;
 import lv.javaguru.productlist.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class DeleteProductByIdService {
         this.database = database;
     }
 
-    public DeleteProductByIdResponse deleteById(int id) {
+    public DeleteProductByIdResponse deleteById(Long id) {
         Optional<Product> product = database.findById(id);
         if (product == null) {
             return new DeleteProductByIdResponse(false, "Product with id '" + id + "' was not found in database.");

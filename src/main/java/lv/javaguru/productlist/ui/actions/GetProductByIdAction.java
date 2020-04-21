@@ -22,7 +22,7 @@ public class GetProductByIdAction implements UIAction {
     public void execute() {
         System.out.println("Enter product id: ");
         Scanner sc = new Scanner(System.in);
-        int productId = sc.nextInt();
+        Long productId = sc.nextLong();
         Optional<Product> resultProductById = productService.findById(productId);
 
         if (resultProductById == null) {

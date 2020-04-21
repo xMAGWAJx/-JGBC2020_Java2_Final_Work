@@ -4,7 +4,6 @@ import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -114,7 +113,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findById(long id) {
+    public Optional<Product> findById(Long id) {
         Optional<Product> optionalProduct = Optional.empty();
         Connection connection = null;
         try {
@@ -152,7 +151,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public boolean deleteById(long id) {
+    public boolean deleteById(Long id) {
         Connection connection = null;
         try {
             connection = getConnection();

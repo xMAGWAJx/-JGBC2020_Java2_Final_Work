@@ -12,9 +12,9 @@ public interface ProductRepository {
 
     List<Product> getProducts();
 
-    Optional<Product> findById(long id);
+    Optional<Product> findById(Long id);
 
-    boolean deleteById(long id);
+    boolean deleteById(Long id);
 
     List<Product> getProductByCategory(ProductCategory category);
 

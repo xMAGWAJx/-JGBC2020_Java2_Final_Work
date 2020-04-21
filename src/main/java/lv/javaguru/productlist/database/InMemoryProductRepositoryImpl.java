@@ -2,7 +2,6 @@ package lv.javaguru.productlist.database;
 
 import lv.javaguru.productlist.domain.Product;
 import lv.javaguru.productlist.domain.ProductCategory;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +27,14 @@ public class InMemoryProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findById(long id) {
+    public Optional<Product> findById(Long id) {
         return products.stream()
                 .filter(product -> product.getId() == id)
                 .findAny();
     }
 
     @Override
-    public boolean deleteById(long id) {
+    public boolean deleteById(Long id) {
         products.removeIf(product -> product.getId() == id);
         return false;
     }

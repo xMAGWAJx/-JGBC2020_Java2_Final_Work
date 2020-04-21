@@ -1,6 +1,5 @@
 package lv.javaguru.productlist.businesslogic.services.getproductservice;
 
-import lv.javaguru.productlist.database.InMemoryProductRepositoryImpl;
 import lv.javaguru.productlist.database.ProductRepository;
 import lv.javaguru.productlist.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class GetProductByIdService {
         this.database = database;
     }
 
-    public Optional<Product> findById(int id) {
+    public Optional<Product> findById(Long id) {
         return database.findById(id);
     }
 }
