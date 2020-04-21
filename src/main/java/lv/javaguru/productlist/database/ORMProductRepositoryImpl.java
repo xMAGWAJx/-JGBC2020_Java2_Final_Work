@@ -42,7 +42,14 @@ public class ORMProductRepositoryImpl implements ProductRepository {
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+        Product product = (Product) sessionFactory.getCurrentSession().createCriteria(Product.class).add(Restrictions.eq("id", id)).uniqueResult();
+        if (product == null) {
+            System.out.println("Product with id = '" + id + "' was not found in database.");
+            return false;
+        } else {
+            sessionFactory.getCurrentSession().delete(product);
+            return true;
+        }
     }
 
     @Override
