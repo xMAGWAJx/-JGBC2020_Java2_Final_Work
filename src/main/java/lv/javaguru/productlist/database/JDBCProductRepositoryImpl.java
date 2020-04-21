@@ -2,7 +2,6 @@ package lv.javaguru.productlist.database;
 
 import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
-import lv.javaguru.productlist.domain.ProductCategory;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.*;
@@ -172,7 +171,7 @@ public class JDBCProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<Product> getProductByCategory(ProductCategory category) {
+    public List<Product> getProductByCategory(Category category) {
         List<Product> products = new ArrayList<>();
         Connection connection = null;
         try {

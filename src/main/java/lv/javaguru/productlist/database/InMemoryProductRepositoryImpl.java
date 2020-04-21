@@ -1,7 +1,7 @@
 package lv.javaguru.productlist.database;
 
+import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
-import lv.javaguru.productlist.domain.ProductCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class InMemoryProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<Product> getProductByCategory(ProductCategory category) {
+    public List<Product> getProductByCategory(Category category) {
         return products.stream()
                 .filter(product -> product.getCategory().equals(category))
                 .collect(Collectors.toList());

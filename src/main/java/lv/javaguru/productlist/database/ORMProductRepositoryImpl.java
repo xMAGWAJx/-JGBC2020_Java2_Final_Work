@@ -1,7 +1,7 @@
 package lv.javaguru.productlist.database;
 
+import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
-import lv.javaguru.productlist.domain.ProductCategory;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +53,13 @@ public class ORMProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<Product> getProductByCategory(ProductCategory category) {
-        return null;
+    public List<Product> getProductByCategory(Category category) {
+        return sessionFactory.getCurrentSession().createCriteria(Product.class).add(Restrictions.eq("category", category)).list();
     }
 
     @Override
     public Optional<Product> findProductByName(String productName) {
-        return Optional.empty();
+        Product product = (Product) sessionFactory.getCurrentSession().createCriteria(Product.class).add(Restrictions.eq("name", productName)).uniqueResult();
+        return Optional.ofNullable(product);
     }
 }

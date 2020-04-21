@@ -1,7 +1,7 @@
 package lv.javaguru.productlist.database;
 
+import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
-import lv.javaguru.productlist.domain.ProductCategory;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,7 @@ public interface ProductRepository {
 
     boolean deleteById(Long id);
 
-    List<Product> getProductByCategory(ProductCategory category);
+    List<Product> getProductByCategory(Category category);
 
     Optional<Product> findProductByName(String productName);
 }
