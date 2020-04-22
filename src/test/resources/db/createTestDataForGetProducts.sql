@@ -1,0 +1,3 @@
+INSERT INTO products (product_name, product_description, product_price, product_discount, product_category, product_actual_price) VALUES ('TestProductForGetProducts1', 'DescriptionTest1', 40, 20, 'FRUIT', 32);
+INSERT INTO products (product_name, product_description, product_price, product_discount, product_category, product_actual_price) VALUES ('TestProductForGetProducts2', 'DescriptionTest2', 50, 30, 'DRINKS', 35);
+INSERT INTO products (product_name, product_description, product_price, product_discount, product_category, product_actual_price) VALUES ('TestProductForGetProducts3', 'DescriptionTest3', 60, 40, 'VEGETABLES', 36);
