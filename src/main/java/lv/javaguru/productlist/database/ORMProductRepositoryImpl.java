@@ -17,8 +17,8 @@ import java.util.Optional;
 @Component
 public class ORMProductRepositoryImpl implements ProductRepository {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    //@Autowired
+    private SessionFactory sessionFactory = null;
 
 
     @Override

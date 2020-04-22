@@ -1,6 +1,7 @@
 package lv.javaguru.productlist.businesslogic.validataion.productvalidationrule;
 
 import lv.javaguru.productlist.database.InMemoryProductRepositoryImpl;
+import lv.javaguru.productlist.database.JPAProductRepository;
 import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
 import org.junit.Before;
@@ -16,20 +17,20 @@ import static org.mockito.Mockito.when;
 
 public class ProductUniqueNameValidationRuleTest {
 
-    private InMemoryProductRepositoryImpl database;
+    private JPAProductRepository productRepository;
     private ProductUniqueNameValidationRule rule;
 
     @Before
     public void setup() {
-        database = mock(InMemoryProductRepositoryImpl.class);
-        rule = new ProductUniqueNameValidationRule(database);
+        productRepository = mock(JPAProductRepository.class);
+        rule = new ProductUniqueNameValidationRule(productRepository);
     }
 
     @Test
     public void returnTrueIfNameIsAvailable() {
         Product product = new Product("TestName", "TestDescription", BigDecimal.valueOf(30), BigDecimal.valueOf(10), Category.FRUIT);
 
-        when(database.findProductByName("TestName")).thenReturn(Optional.empty());
+        when(productRepository.findByName("TestName")).thenReturn(Optional.empty());
          assertTrue(rule.isValid(product));
     }
 
@@ -38,7 +39,7 @@ public class ProductUniqueNameValidationRuleTest {
         Product product1 = new Product("TestName", "TestDescription1", BigDecimal.valueOf(30), BigDecimal.valueOf(10), Category.FRUIT);
         Product product2 = new Product("TestName", "TestDescription2", BigDecimal.valueOf(40), BigDecimal.valueOf(12), Category.VEGETABLES);
 
-        when(database.findProductByName("TestName")).thenReturn(Optional.of(product1));
+        when(productRepository.findByName("TestName")).thenReturn(Optional.of(product1));
         assertFalse(rule.isValid(product2));
     }
 

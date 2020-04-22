@@ -5,6 +5,7 @@ import lv.javaguru.productlist.businesslogic.services.addservice.AddProductServi
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidationResponse;
 import lv.javaguru.productlist.businesslogic.validataion.ProductValidator;
 import lv.javaguru.productlist.database.InMemoryProductRepositoryImpl;
+import lv.javaguru.productlist.database.JPAProductRepository;
 import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
 import org.junit.Before;
@@ -20,14 +21,14 @@ import static org.mockito.Mockito.*;
 public class ProductServiceTest {
 
     private ProductValidator validator;
-    private InMemoryProductRepositoryImpl database;
+    private JPAProductRepository productRepository;
     private AddProductService service;
 
     @Before
     public void setup() {
         validator = mock(ProductValidator.class);
-        database = mock(InMemoryProductRepositoryImpl.class);
-        service = new AddProductService(database, validator);
+        productRepository = mock(JPAProductRepository.class);
+        service = new AddProductService(productRepository, validator);
     }
 
     @Test
@@ -44,7 +45,7 @@ public class ProductServiceTest {
         assertFalse(response.isSuccess());
         assertEquals(response.getErrorMessages(), errors);
 
-        verifyZeroInteractions(database);
+        verifyZeroInteractions(productRepository);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class ProductServiceTest {
         assertTrue(response.isSuccess());
         assertNull(response.getErrorMessages());
 
-        verify(database).addProduct(product);
+        verify(productRepository).save(product);
     }
 
 
