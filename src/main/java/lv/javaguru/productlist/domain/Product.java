@@ -12,6 +12,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "product_list_id", nullable = false)
+    private ProductList productList;
+
     @Column(name = "product_name", nullable = false)
     private String name;
 
@@ -54,6 +58,7 @@ public class Product {
         Product product = (Product) o;
 
         if (id != null ? !id.equals(product.id) : product.id != null) return false;
+        if (productList != null ? !productList.equals(product.productList) : product.productList != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
         if (description != null ? !description.equals(product.description) : product.description != null) return false;
         if (price != null ? !price.equals(product.price) : product.price != null) return false;
@@ -65,6 +70,7 @@ public class Product {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (productList != null ? productList.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
@@ -78,12 +84,13 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "id=" + id +
+                ", productList=" + productList +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", discount=" + discount + "%" +
+                ", discount=" + discount +
                 ", category=" + category +
-                ", resultPrice=" + actualPrice +
+                ", actualPrice=" + actualPrice +
                 '}';
     }
 
@@ -93,6 +100,14 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ProductList getProductList() {
+        return productList;
+    }
+
+    public void setProductList(ProductList productList) {
+        this.productList = productList;
     }
 
     public String getName() {

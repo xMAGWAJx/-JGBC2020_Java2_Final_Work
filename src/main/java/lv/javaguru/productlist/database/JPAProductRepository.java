@@ -2,6 +2,7 @@ package lv.javaguru.productlist.database;
 
 import lv.javaguru.productlist.domain.Category;
 import lv.javaguru.productlist.domain.Product;
+import lv.javaguru.productlist.domain.ProductList;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -12,5 +13,7 @@ public interface JPAProductRepository extends CrudRepository<Product, Long> {
     Optional<Product> findByName(String name);
 
     List<Product> findByCategory(Category category);
+
+    List<Product> findByProductList(ProductList productList);
 
 }
