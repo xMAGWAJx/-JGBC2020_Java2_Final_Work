@@ -36,12 +36,7 @@ AUTO_INCREMENT = 1000;
 
 select * from products;
 
-select * from products where product_id = 1001;
-
--- Test data entries
-
-INSERT INTO products (product_name, product_description, product_price, product_discount, product_category, product_actual_price) VALUES ('TestEntrie', 'DescriptionTest', 40, 20, 'FRUIT', 32);
-
+select * from product_lists;
 
 -- Truncate and drop statements
 
